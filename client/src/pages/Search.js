@@ -51,7 +51,10 @@ handleFormSubmit = event => {
                       />
                     </Col>
                     <Col size="xs-3 sm-2">
-                      <Button onClick={this.handleFormSubmit} type="success" className="input-lg" >
+                      <Button 
+                        onClick={this.handleFormSubmit} 
+                        type="success" 
+                        className="input-lg" >
                         Search
                      </Button>
                     </Col>
