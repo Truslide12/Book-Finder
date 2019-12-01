@@ -14,7 +14,7 @@ export function List({ children }) {
   );
 }
 
-export function BookListItem({
+export function ListItem({
   thumbnail = "https://placehold.it/300x300",
   title,
   author,

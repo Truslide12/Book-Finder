@@ -1,4 +1,4 @@
-const axios = require("axiox");
+const axios = require("axios");
 const router = require("express").Router();
 const booksController = require("../../controllers/booksController");
 
@@ -13,14 +13,14 @@ router.get("/google", (req, res) => {
 
 // Matches with "/api/books"
 router.route("/")
-  .get(booksController.findAll)
-  .post(booksController.create);
+.post(booksController.create)
+  .get(booksController.findAll);
 
 // Matches with "/api/books/:id"
 router
   .route("/:id")
-  .get(booksController.findById)
-  .put(booksController.update)
+  // .get(booksController.findById)
+  // .put(booksController.update)
   .delete(booksController.remove);
 
 module.exports = router;

@@ -1,33 +1,38 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import Input from "../components/Input";
+import Button from "../components/Button";
 import { Col, Row, Container } from "../components/Grid";
-import Jumbotron from "../components/Jumbotron";
+import { List, ListItem } from "../components/List";
 import API from "../utils/API";
+
 
 class Search extends Component {
   state = {
     book: [],
-    search: "",
+    bookSearch: "",
     saved: false
   };
+  
   // When this component mounts, grab the book with the _id of this.props.match.params.id
   // e.g. localhost:3000/books/599dcb67f0f16317844583fc
-  componentDidMount() {
-    API.getBook(this.props.match.params.id)
-      .then(res => this.setState({ book: res.data }))
-      .catch(err => console.log(err));
-  }
+  handleInputChange = event => {
+    const {name, value } = event.target;
+    this.setState({
+        [name]: value
+    });
+};
 
-  handleFormSubmit = event => {
+handleFormSubmit = event => {
     event.preventDefault();
-    console.log(this.state.Search);
-    API.getBooks(this.state.Search)
-      .then(res => {
+    console.log(this.state.bookSearch);
+    API.getBooks(this.state.bookSearch)
+    .then(res => {
         console.log(res);
         this.setState({ books: res.data })
-      })
-      .catch(err => console.log(err));
-  };
+    })
+    .catch(err => console.log(err));
+};
+
   render() {
     return (
       <div>
@@ -61,10 +66,10 @@ class Search extends Component {
               {!this.state.books.length ? (
                 <h1 className="text-center">No Books to Display</h1>
               ) : (
-                  <BookList>
+                  <List>
                     {this.state.books.map(book => {
                       return (
-                        <BookListItem
+                        <ListItem
                           key={`BookID-${book.volumeInfo.title}`}
                           title={book.volumeInfo.title}
                           href={book.volumeInfo.infoLink}
@@ -75,7 +80,7 @@ class Search extends Component {
                         />
                       );
                     })}
-                  </BookList>
+                  </List>
                 )}
             </Col>
           </Row>

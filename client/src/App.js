@@ -2,10 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SavedBooks from "./pages/SavedBooks";
 import Search from "./pages/Search";
-import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
-import { Container } from "./components/Grid";
 import Jumbotron from "./components/Jumbotron";
+import { Container, Row, Col } from "./components/Grid";
 
 function App() {
   return (
@@ -16,7 +15,7 @@ function App() {
           <Row>
             <Col size="md-12">
               <Jumbotron>
-                <h1>(React Google Book Search</h1>
+                <h1>React Google Book Search</h1>
                 <p>Search for and save your favorite books</p>
               </Jumbotron>
             </Col>
@@ -25,7 +24,6 @@ function App() {
         <Switch>
           <Route exact path="/search" component={Search} />
           <Route exact path="/savedBooks/" component={SavedBooks} />
-          <Route component={NoMatch} />
         </Switch>
       </div>
     </Router>
